@@ -205,8 +205,7 @@ fig.add_trace(go.Scatter(
 fig.update_layout(
     title='Total Orders per Day',
     xaxis=dict(
-        dtick="D1",
-        range=[start_date - pd.Timedelta(days=1), end_date + pd.Timedelta(days=1)],
+        range=[start_date - pd.Timedelta(days=3), end_date + pd.Timedelta(days=3)],
         rangeslider=dict(visible = True),
     ),
     template='plotly_dark',
@@ -233,8 +232,7 @@ trace2 = go.Scatter(
 layout = go.Layout(
     title='Product and Freight Value vs Total Orders per Day',
     xaxis=dict(
-        dtick="D1",
-        range=[start_date - pd.Timedelta(days=1), end_date + pd.Timedelta(days=1)],
+        range=[start_date - pd.Timedelta(days=3), end_date + pd.Timedelta(days=3)],
         rangeslider=dict(visible = True),
     ),
  
