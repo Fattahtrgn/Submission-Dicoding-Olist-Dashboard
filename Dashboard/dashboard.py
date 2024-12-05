@@ -205,8 +205,7 @@ fig.add_trace(go.Scatter(
 fig.update_layout(
     title='Total Orders per Day',
     xaxis=dict(
-        dtick="D1",
-        range=[start_date - pd.Timedelta(days=1), end_date + pd.Timedelta(days=1)],
+        range=[start_date - pd.Timedelta(days=3), end_date + pd.Timedelta(days=3)],
         rangeslider=dict(visible = True),
     ),
     template='plotly_dark',
@@ -233,8 +232,7 @@ trace2 = go.Scatter(
 layout = go.Layout(
     title='Product and Freight Value vs Total Orders per Day',
     xaxis=dict(
-        dtick="D1",
-        range=[start_date - pd.Timedelta(days=1), end_date + pd.Timedelta(days=1)],
+        range=[start_date - pd.Timedelta(days=3), end_date + pd.Timedelta(days=3)],
         rangeslider=dict(visible = True),
     ),
  
@@ -265,6 +263,7 @@ with col1:
         x="Quantity",
         data=orders_category.sort_values(by='Quantity', ascending=False).head(10),
         palette=colors,
+        hue = "product_category_name"
     )
     plt.title("Total orders by category", fontsize=50)
     plt.ylabel(None)
@@ -279,7 +278,8 @@ with col2:
         y="product_category_name", 
         x="Value",
         data=orders_category.sort_values(by='Value', ascending=False).head(10),
-        palette=colors,    
+        palette=colors,
+        hue = "product_category_name"
     )
     plt.title("Total values by category", fontsize=50)
     plt.ylabel(None)
@@ -291,12 +291,13 @@ with col2:
 st.subheader("Customer Demographics")
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 10))
-
+colors=["#72BCD4"] + ["#D3D3D3"]*4
 sns.barplot(
     data=cust_city.head(5),
     y="customer_count", 
     x="customer_city",
     palette=colors,
+    hue = "customer_city",
     ax=ax[0]
 )
 ax[0].set_title("Number of Customer by cities", fontsize=40)
@@ -310,6 +311,7 @@ sns.barplot(
     y="customer_count", 
     x="customer_state",
     palette=colors,
+    hue = "customer_state",
     ax=ax[1]
 )
 ax[1].set_title("Number of Customer by states", fontsize=40)
